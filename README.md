@@ -12,4 +12,6 @@ Read more about it [on my blog](https://varunbpatil.github.io/2018/11/26/PyCCTV.
 
 2. Run the following command.
 
-	$ py_cctv.py --model <path to yolo.h5> --output <path to output image directory>
+```bash
+$ py_cctv.py --model <path to yolo.h5> --output <path to output image directory>
+```
