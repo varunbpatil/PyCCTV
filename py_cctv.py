@@ -17,10 +17,10 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 
 class YoloV3:
     """
-	A Yolo V3 "person" detection implementation in Keras.
+    A Yolo V3 "person" detection implementation in Keras.
 
-	Read more about the Yolo V3 model and output interpretation here:
-	https://towardsdatascience.com/yolo-v3-object-detection-53fb7d3bfe6b
+    Read more about the Yolo V3 model and output interpretation here:
+    https://towardsdatascience.com/yolo-v3-object-detection-53fb7d3bfe6b
     https://www.kdnuggets.com/2018/05/implement-yolo-v3-object-detector-pytorch-part-1.html
     """
 
@@ -60,7 +60,7 @@ class YoloV3:
         image_data /= 255.
         image_data = np.expand_dims(image_data, axis=0)
         # Shape of image_data is now (1, 416, 416, 3).
-        
+
         # Return the Yolo V3 prediction for the given image.
         return self.yolo_v3.predict(image_data)
 
@@ -77,7 +77,7 @@ class YoloV3:
 
         # Get the Yolo V3 predictions for the given image.
         predictions = self._predict(image)
-        
+
         # Check whether a person is detected in the image with high
         # confidence in any of the three predictions made by Yolo V3 at
         # different scales.
@@ -95,7 +95,7 @@ class YoloV3:
         for pred in predictions:
             x, y = pred.shape[1:3]
             pred = pred[0]
-            
+
             for i in range(x):
                 for j in range(y):
                     for (obj, person) in zip(obj_conf_pos, person_cls_pos):
@@ -112,7 +112,7 @@ class PyCCTV:
     A CCTV camera application with "person" detection and
     remote monitoring over Wi-Fi.
     """
-    
+
     def __init__(self, model, output):
         # Cleanup the output directory.
         shutil.rmtree(output, ignore_errors=True)
@@ -151,7 +151,7 @@ class PyCCTV:
         """
         Continuously capture frames from the webcam and detect the presence
         of a person in the frame using Yolo V3.
-        """        
+        """
         yolo = YoloV3(model)
 
         while True:

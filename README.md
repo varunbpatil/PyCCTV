@@ -2,13 +2,14 @@
 
 A CCTV camera application with "person" detection and remote monitoring over Wi-Fi.
 
-Read more about it [on my blog]().
+Read more about it [on my blog](https://varunbpatil.github.io/2018/11/26/PyCCTV.html).
 
 
 ### Usage
 
-1. Download the pre-trained Keras Yolo V3 model [here]().
+1. Download the pretrained Keras Yolo V3 model (trained on the COCO dataset)
+   from [here](https://drive.google.com/file/d/1_ZpUKKikmEI5_sZ4Px3z4D2pbBRMnzoK/view?usp=sharing).
 
 2. Run the following command.
 
-	$ py_cctv.py -m <path_to_model_downloaded_in_step_1> -o <path_to_output_image_directory>
+	$ py_cctv.py --model <path to yolo.h5> --output <path to output image directory>
