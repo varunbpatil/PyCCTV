@@ -123,7 +123,8 @@ class PyCCTV:
         self.output = output
 
 
-    def _web_server(self, output, image_num):
+    @staticmethod
+    def _web_server(output, image_num):
         """
         Flask web server for remote monitoring of webcam over Wi-Fi.
         """
@@ -147,7 +148,8 @@ class PyCCTV:
         app.run(host='0.0.0.0')
 
 
-    def _webcam(self, model, output, image_num):
+    @staticmethod
+    def _webcam(model, output, image_num):
         """
         Continuously capture frames from the webcam and detect the presence
         of a person in the frame using Yolo V3.
@@ -197,12 +199,10 @@ class PyCCTV:
         # 1. webcam     - Continuously capture frames from webcam and check for
         #                 the presence of a person in the frame.
         # 2. web_server - A Flask web server for remote monitoring over Wi-Fi.
-        processes = []
-
-        processes.append(Process(target=self._webcam,
-                                 args=(self.model, self.output, image_num)))
-        processes.append(Process(target=self._web_server,
-                                 args=(self.output, image_num)))
+        processes = [Process(target=self._webcam,
+                             args=(self.model, self.output, image_num)),
+                     Process(target=self._web_server,
+                             args=(self.output, image_num))]
 
         for p in processes:
             p.daemon = True
